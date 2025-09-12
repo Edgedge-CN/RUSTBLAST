@@ -1,0 +1,8 @@
+[core]
+createNeutral:true
+autoTriggerCheckRate:every8Frames
+[hiddenAction_ai]
+autoTrigger:true
+addWaypoint_type:loadInto
+addWaypoint_target_nearestUnit_tagged:boat
+addWaypoint_target_nearestUnit_team:any

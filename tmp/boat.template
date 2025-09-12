@@ -1,0 +1,59 @@
+[attack]
+isMelee:true
+meleeEngangementDistance:160
+[hiddenAction_red1]
+autoTrigger:true
+requireConditional:if self.transportingUnitwithTags(includes='r1')
+setUnitStats:hp+=35
+deleteNumUnitsFromTransport:1
+[hiddenAction_red2]
+autoTrigger:true
+requireConditional:if self.transportingUnitwithTags(includes='r2')
+setUnitStats:hp+=150
+deleteNumUnitsFromTransport:1
+[hiddenAction_red3]
+autoTrigger:true
+requireConditional:if self.transportingUnitwithTags(includes='r3')
+setUnitStats:hp+=350
+deleteNumUnitsFromTransport:1
+[hiddenAction_hpac]
+autoTriggerOnEvent:created
+setUnitStats:hp=1
+[hiddenAction_ent]
+autoTriggerOnEvent:enteredTransport
+addResourcesWithLogic:红宝石=self.hp-1
+alsoQueueAction:offhp
+[hiddenAction_offhp]
+buildSpeed=1
+setUnitStats:hp=1
+[hiddenAction_hpac2]
+buildSpeed:1
+autoTriggerOnEvent:queuedUnitFinished
+setUnitStats:hp=1
+
+#[hiddenAction_AI]
+#autoTriggerOnEvent:killedAnyUnit
+#transportTargetNow:nearestUnit
+
+#[hiddenAction_AI2]
+#autoTriggerOnEvent:killAnyUnit
+#addWaypoint_type:attack
+#addWaypoint_target_nearestUnit_team:enemy
+
+#[hiddenAction_AI3]
+#autoTrigger:true
+#requireConditional:if self.hp(full)
+#addWaypoint_type:loadInto
+#addWaypoint_target_nearestUnit_team:own
+#addWaypoint_target_nearestUnit_tagged:base
+
+#[hiddenAction_AI4]
+#autoTriggerOnEvent:created
+#addWaypoint_type:attack
+#addWaypoint_target_nearestUnit_team:enemy
+
+[hiddenAction_AI5]
+autoTrigger:true
+addWaypoint_target_randomUnit_tagged:fe
+requireConditional:if self.hp == 0 and self.isControlledByAI()
+addWaypoint_type:attack

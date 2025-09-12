@@ -1,0 +1,11 @@
+[mod]
+title:<RUSTBLAST>Build51_Alpha1.5.3.4
+description:A fan-made mod for the online MMO game 'STARBLAST'\n-Since build 51, change logs will be displayed by a unit in-game; open sandbox mode to view them.\n-If you enjoy this type of game, open your web browser and enter the official link: https://starblast.io\n-Made By EDGEDGE\n-Currently only supports Chinese (sorry for the inconvenience).
+thumbnail:icon.png
+minVersion:1.15p9
+[music]
+sourceFolder:music/
+whenUsingUnitsFromThisMod_playExclusively:true
+[maps]
+sourceFolder:maps/
+addExtraMapsForPath:true
