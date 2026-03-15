@@ -1,0 +1,24 @@
+[core]
+buildingToFootprintOffsetX:20
+buildingToFootprintOffsetY:20
+constructionFootprint:0,0,1,1
+footprint: 0,0,1,1
+availableInDemo:true
+radius:15
+isBio:false
+isBuilding:true
+explodeTypeOnDeath:building
+explodeOnDeathGroundCollision:false
+explodeOnDeath:false
+tags:sta,tur
+mass:1000
+shieldDisplayOnlyDeflection:true
+[decal_sctC]
+image:ROOT:/tur_sct.png
+onlyWhileActive:true
+alwaysStartDirAtZero:true
+onlyWhenSelectedByOwnPlayer:true
+imageScale:0.8
+teamColors:true
+order:2
+alpha:0.3

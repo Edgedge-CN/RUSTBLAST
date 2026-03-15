@@ -1,0 +1,13 @@
+[core]
+showActionsWithMixedSelectionIfOtherUnitsHaveTag:ore
+
+
+[decal_sctC]
+image:ROOT:/rcscct.png
+onlyWhileActive:true
+alwaysStartDirAtZero:true
+onlyWhenSelectedByAnyPlayer:true
+imageScale:0.05*${core.radius}
+teamColors:true
+order:1
+alpha:0.3

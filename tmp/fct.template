@@ -1,0 +1,13 @@
+[core]
+showActionsWithMixedSelectionIfOtherUnitsHaveTag:fct
+
+
+[decal_sctC]
+image:ROOT:/tmp/fct_sct.png
+onlyWhileActive:true
+alwaysStartDirAtZero:true
+onlyWhenSelectedByOwnPlayer:true
+imageScale:0.025*${core.radius}
+teamColors:true
+order:-1
+alpha:0.4
