@@ -1,0 +1,5 @@
+[core]
+copyFrom:"""ROOT:RW_Engine/View/View.md"""
+name:Keyboard
+tags:Keyboard
+#showInEditor:false

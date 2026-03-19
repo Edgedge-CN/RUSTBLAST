@@ -1,0 +1,13 @@
+[core]
+@memory LayoutInterpreter:unit
+[hiddenAction_spawnLayoutInterpreter]
+autoTriggerOnEvent:created
+spawnUnits:LayoutInterpreter
+
+
+[hiddenAction_receivedLayoutInterpreter]
+autoTriggerOnEvent:newMessage(withTag="LayoutInterpreterInitWaiting")
+setUnitMemory:LayoutInterpreter=eventSource
+alsoTriggerAction:spawnLayoutView
+
+[hiddenAction_spawnLayoutView]
