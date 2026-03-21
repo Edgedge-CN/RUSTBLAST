@@ -1,6 +1,6 @@
 [mod]
-title:RUSTBLAST Release2.0.2(Build402)
-description:彻底移除了fly\arras分支(移除12个飞船,3个红宝石实体,7个外星人,3个石头)\n-模块更新\n-2个新发电设施,3个新单位,8个新防御单位\n-辐射系统修改\n-emmm\n-Made by Edgedge
+title:RUSTBLAST Release2.0.3(Build405)
+description:去除了一些烦人的特效,部分单位更改\n-3个新炮台\n-增强初始炮台,削弱SAC,主力舰Sirius\n-emmm\n-Made by Edgedge
 thumbnail:icon.png
 minVersion:1.15p9
 [music]
