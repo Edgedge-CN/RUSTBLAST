@@ -1,0 +1,109 @@
+[core]
+strictLevel:0
+allowCaptureWhenNeutralByAI:true
+#傻逼ai连占领都不会
+#fuck idiot AI that can't capture
+[global_resource_红宝石]
+hidden:false
+iconImage:ROOT:/mine.png
+displayName:红色矿质
+displayNameShort:矿
+displayColor: #ff0f5f
+priority:1
+displayRoundedDown:true
+displayWhenZero:false
+#This resource come from 'starblast.io'
+[global_resource_电力]
+hidden:false
+displayName:电力
+iconImage:ROOT:/ele.png
+displayNameShort:电
+displayColor: #00ff6a
+priority:1
+displayTextPostfix:kW
+displayRoundedDown:false
+displayWhenZero:true
+[global_resource_data]
+hidden:false
+displayName:源代码
+iconImage:ROOT:/data.png
+displayNameShort:码
+displayColor: #61e144
+priority:2
+#displayTextPostfix:兆字节
+displayRoundedDown:false
+displayWhenZero:true
+appendResourceInHUD:datamax
+[global_resource_datamax]
+hidden:true
+displayName:/
+#储存空间
+#iconImage:ROOT:/datamax.png
+displayNameShort:datastolimit
+displayColor: #f08057
+priority:2
+displayTextPostfix:兆字节
+displayRoundedDown:false
+displayWhenZero:true
+[global_resource_poly]
+hidden:false
+displayName:几何元素
+#iconImage:ROOT:/ele.png
+#arras yeah :P
+#also try https://www.arras.io
+displayNameShort:几何
+displayColor: #90d822
+priority:1
+displayTextPostfix:line
+displayRoundedDown:true
+displayWhenZero:false
+[global_resource_iron]
+appendResourceInHUD:S
+hidden:false
+iconImage:ROOT:/Fe.png
+displayName:金属
+displayNameShort:铁
+displayColor: #ff7301
+priority:1
+displayRoundedDown:true
+displayWhenZero:false
+[global_resource_S]
+appendResourceInHUD:crystal
+hidden:true
+iconImage:ROOT:/S.png
+displayName:硫化物
+displayNameShort:硫
+displayColor: #816f00
+priority:1
+displayRoundedDown:true
+displayWhenZero:false
+[global_resource_heac]
+appendResourceInHUD:rad
+hidden:true
+iconImage:ROOT:/heac.png
+displayName:合金
+displayNameShort:合金
+displayColor: #1cdbc5
+priority:1
+displayRoundedDown:true
+displayWhenZero:false
+[global_resource_crystal]
+appendResourceInHUD:heac
+hidden:true
+iconImage:ROOT:/cyst.png
+displayName:晶体
+displayNameShort:晶
+displayColor: #cdff43
+priority:1
+displayRoundedDown:true
+displayWhenZero:false
+[global_resource_rad]
+hidden:true
+iconImage:ROOT:/rad.png
+displayName:放射物
+displayNameShort:核素
+displayColor: #2bac00
+priority:1
+displayRoundedDown:false
+displayWhenZero:false
+displayTextPostfix:mol
