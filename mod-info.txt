@@ -1,6 +1,6 @@
 [mod]
-title:RUSTBLAST Release2.0.3(Build405)
-description:去除了一些烦人的特效,部分单位更改\n-3个新炮台\n-增强初始炮台,削弱SAC,主力舰Sirius\n-emmm\n-Made by Edgedge
+title:RUSTBLAST Beta2.0.5
+description:实验性的弹道效果\n-优化\n-六边形护盾\n-机械单位更新,T4无人机船坞,轰炸机和拦截机\n-Made by Edgedge
 thumbnail:icon.png
 minVersion:1.15p9
 [music]
