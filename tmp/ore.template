@@ -1,6 +1,6 @@
 [core]
 showActionsWithMixedSelectionIfOtherUnitsHaveTag:ore
-
+showSelectionIndicator:false
 
 [decal_sctC]
 image:ROOT:/rcscct.png

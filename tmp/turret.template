@@ -4,7 +4,7 @@ buildingToFootprintOffsetY:20
 constructionFootprint:0,0,1,1
 footprint: 0,0,1,1
 availableInDemo:true
-radius:15
+radius:18
 isBio:false
 isBuilding:true
 explodeTypeOnDeath:building
@@ -13,6 +13,7 @@ explodeOnDeath:false
 tags:sta,tur
 mass:1000
 shieldDisplayOnlyDeflection:true
+showSelectionIndicator:false
 [decal_sctC]
 image:ROOT:/tur_sct.png
 onlyWhileActive:true

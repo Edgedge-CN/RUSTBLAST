@@ -1,6 +1,6 @@
 [core]
 showActionsWithMixedSelectionIfOtherUnitsHaveTag:fct
-
+showSelectionIndicator:false
 
 [decal_sctC]
 image:ROOT:/tmp/fct_sct.png
