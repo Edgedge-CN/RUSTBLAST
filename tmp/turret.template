@@ -13,6 +13,7 @@ explodeOnDeath:false
 tags:sta,tur
 mass:1000
 shieldDisplayOnlyDeflection:true
+[graphics]
 showSelectionIndicator:false
 [decal_sctC]
 image:ROOT:/tur_sct.png

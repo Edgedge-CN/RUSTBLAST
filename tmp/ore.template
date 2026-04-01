@@ -1,5 +1,6 @@
 [core]
 showActionsWithMixedSelectionIfOtherUnitsHaveTag:ore
+[graphics]
 showSelectionIndicator:false
 
 [decal_sctC]

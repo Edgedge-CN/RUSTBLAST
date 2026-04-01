@@ -1,5 +1,6 @@
 [core]
 showActionsWithMixedSelectionIfOtherUnitsHaveTag:fct
+[graphics]
 showSelectionIndicator:false
 
 [decal_sctC]
