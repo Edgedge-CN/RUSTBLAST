@@ -1,6 +1,6 @@
 [mod]
 title:RUSTBLAST Beta2.0.6
-description:实验性的弹道效果\n-优化\n-六边形护盾\n-机械单位更新,T4无人机船坞,轰炸机和拦截机\n-Made by Edgedge
+description:更新实验性的深空运输站(很不稳定!)\n-一些单位平衡\n-Made by Edgedge
 thumbnail:icon.png
 minVersion:1.15p9
 [music]
