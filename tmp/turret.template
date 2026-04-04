@@ -19,7 +19,8 @@ showSelectionIndicator:false
 image:ROOT:/tur_sct.png
 onlyWhileActive:true
 alwaysStartDirAtZero:true
-onlyWhenSelectedByOwnPlayer:true
+#onlyWhenSelectedByOwnPlayer:true
+onlyWhenSelectedByAnyPlayer:true
 imageScale:0.8
 teamColors:true
 order:2
