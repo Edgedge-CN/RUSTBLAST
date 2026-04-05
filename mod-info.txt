@@ -1,5 +1,5 @@
 [mod]
-title:RUSTBLAST Beta2.0.6
+title:RUSTBLAST Beta2.0.6-f
 description:更新实验性的深空运输站(很不稳定!)\n-一些单位平衡\n-Made by Edgedge
 thumbnail:icon.png
 minVersion:1.15p9
