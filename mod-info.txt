@@ -1,5 +1,5 @@
 [mod]
-title:RUSTBLAST Beta2.0.7
+title:RUSTBLAST Beta2.0.8
 description:更新奇点炮和导弹炮台分支\n-重置墙贴图\n-裂解T3,T41,T42\n-Made by Edgedge
 thumbnail:icon.png
 minVersion:1.15p9
