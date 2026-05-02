@@ -1,5 +1,5 @@
 [mod]
-title:RUSTBLAST Beta2.0.9
+title:RUSTBLAST Beta2.0.9-fff
 description:一些空军单位\n-Made by Edgedge
 thumbnail:icon.png
 minVersion:1.15p9
