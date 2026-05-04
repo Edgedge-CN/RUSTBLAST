@@ -54,12 +54,12 @@ takeResources:fluxs=-4
 autoTrigger:true
 takeResources_includeUnitsWithinRange:45
 [hiddenAction_temp-f]
-requireConditional:if self.resource.temp> 4
+requireConditional:if self.resource.temp> 800
 #setResourcesWithLogic:tmp2=self.resource.fluxfs*0.25
 addResourcesWithLogic:fluxs=-1*(self.resource.temp *0.05)
 takeResources_excludeUnitsWithoutTags:RBMK
-takeResources_maxUnits:7
-takeResources:temp=-1*(self.resource.temp *0.05)
+takeResources_maxUnits:8
+takeResources:temp=-100
 autoTrigger:true
 takeResources_includeUnitsWithinRange:60
 [hiddenAction_nfs]
@@ -77,7 +77,7 @@ shoot_sound:gun_fire
 shoot_sound_vol:0
 x:0
 y:0
-projectile:fluxf
+projectile:1
 turnSpeed:3
 canAttackMaxAngle:181
 turnSpeedAcceleration:1
