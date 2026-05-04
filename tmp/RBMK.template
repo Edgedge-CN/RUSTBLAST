@@ -38,30 +38,32 @@ requireConditional:if self.resource.fluxf > 0.1
 #setResourcesWithLogic:tmp1=self.resource.fluxf *0.25
 addResourcesWithLogic:fluxfc=self.resource.fluxf *0.5,fluxf=-1*(self.resource.fluxf *0.2)
 autoTrigger:true
-fireTurretXAtGround: n
-fireTurretXAtGround_withOffset:0,0
-
-[hiddenAction_fluxst-slow]
+[hiddenAction_nssshot]
 requireConditional:if self.resource.fluxs > 0.1
 #setResourcesWithLogic:tmp2=self.resource.fluxfs*0.25
 addResourcesWithLogic:fluxs=-1*(self.resource.fluxs *0.5)
 autoTrigger:true
-fireTurretXAtGround: n
-fireTurretXAtGround_withProjectile:fluxs
-fireTurretXAtGround_withOffset:0,0
-takeResources_includeUnitsWithinRange:45
 addResourcesWithLogic:temp=self.resource.fluxs *5,fluxs=-1*(self.resource.fluxs *0.4)
 [hiddenAction_fluxst-slow]
-requireConditional:if self.resource.fluxs > 0.1
+requireConditional:if self.resource.fluxs > 4
 #setResourcesWithLogic:tmp2=self.resource.fluxfs*0.25
 addResourcesWithLogic:fluxs=-1*(self.resource.fluxs *0.5)
+takeResources_excludeUnitsWithoutTags:RBMK
+takeResources_maxUnits:4
+takeResources:fluxs=-4
 autoTrigger:true
-fireTurretXAtGround: n
-fireTurretXAtGround_withProjectile:fluxs
-fireTurretXAtGround_withOffset:0,0
 takeResources_includeUnitsWithinRange:45
+[hiddenAction_temp-f]
+requireConditional:if self.resource.temp> 4
+#setResourcesWithLogic:tmp2=self.resource.fluxfs*0.25
+addResourcesWithLogic:fluxs=-1*(self.resource.temp *0.05)
+takeResources_excludeUnitsWithoutTags:RBMK
+takeResources_maxUnits:7
+takeResources:temp=-1*(self.resource.temp *0.05)
+autoTrigger:true
+takeResources_includeUnitsWithinRange:60
 [hiddenAction_nfs]
-autoTrigger:if self.resource.fluxfc > 0.1
+autoTrigger:if self.resource.fluxfc > 4
 takeResources_includeUnitsWithinRange:45
 takeResources_excludeUnitsWithoutTags:RBMK
 takeResources_maxUnits:4
@@ -81,48 +83,6 @@ canAttackMaxAngle:181
 turnSpeedAcceleration:1
 shoot_flame:NONE
 shoot_light: #ff8000
-[projectile_fluxf]
-friendlyFire:true
-areaRadius:50
-areaDamage:100
-areaDamageNoFalloff:true
-mutatorF_ifUnitWithTags:RBMK
-mutatorF_areaDamageMultiplier:0.01
-targetGround:true
-targetGroundSpread:10
-turnSpeed:0
-turnSpeedWhenNear:0
-directDamage:1
-life:1
-speed:10
-frame:1
-drawSize:1
-lightColor: #0080ff
-lightSize:0.5
-image:ROOT:/unit/sta/RBMK/rods/neutf.png
-explodeEffect:NONE
-[projectile_fluxs]
-friendlyFire:true
-areaRadius:50
-areaDamage:80
-areaDamageNoFalloff:true
-mutatorF_ifUnitWithTags:RBMK
-#mutatorF_addResourcesDirectHit:fluxs=self.resource.tmp2
-mutatorF_areaDamageMultiplier:0.01
-targetGround:true
-targetGroundSpread:10
-turnSpeed:0
-turnSpeedWhenNear:0
-directDamage:1
-life:1
-speed:10
-frame:1
-drawSize:1
-lightColor: #ff4000
-lightSize:0.5
-image:ROOT:/unit/sta/RBMK/rods/neuts.png
-explodeEffect:NONE
-
 [projectile_1]
 targetGround:true
 targetGroundSpread:10
@@ -152,15 +112,24 @@ lightColor: #00fbff
 lightSize:0.3
 image:ROOT:/unit/sta/RBMK/rods/neutf.png
 [action_fluxfdisp]
+iconImage:ROOT:/unit/sta/RBMK/flux1.png
 isVisible:true
 text:(%{self.resource.fluxf}+%{self.resource.fluxfc})
 textPostFix: 快中子通量
 displayType:infoOnly
 buildSpeed:0
 [action_fluxsdisp]
+iconImage:ROOT:/unit/sta/RBMK/flux2.png
 isVisible:true
 text:(%{self.resource.fluxs})
 textPostFix: 慢中子通量
+displayType:infoOnly
+buildSpeed:0
+[action_tempdisp]
+iconImage:ROOT:/unit/sta/RBMK/temp.png
+isVisible:true
+text:%{self.resource.temp}K
+textPostFix: 温度
 displayType:infoOnly
 buildSpeed:0
 [hiddenAction_fluxoutE]
