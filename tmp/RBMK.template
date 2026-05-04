@@ -1,0 +1,171 @@
+[core]
+buildingToFootprintOffsetX:20
+buildingToFootprintOffsetY:20
+constructionFootprint:0,0,1,1
+footprint: 0,0,1,1
+availableInDemo:true
+radius:20
+isBio:false
+isBuilding:true
+explodeTypeOnDeath:building
+explodeOnDeathGroundCollision:false
+explodeOnDeath:false
+mass:1000
+experimental: true
+#shieldDisplayOnlyDeflection:true
+[graphics]
+showSelectionIndicator:false
+[decal_sctC]
+image:ROOT:/tur_sct.png
+onlyWhileActive:true
+alwaysStartDirAtZero:true
+#onlyWhenSelectedByOwnPlayer:true
+onlyWhenSelectedByAnyPlayer:true
+imageScale:0.8
+teamColors:true
+order:2
+alpha:0.3
+[resource_fluxf]
+displayName:通量(快)
+[resource_fluxs]
+displayName:通量(慢)
+[resource_fluxfc]
+displayName:缓存通量(快)
+[resource_temp]
+displayName:温度
+[hiddenAction_fluxst]
+requireConditional:if self.resource.fluxf > 0.1
+#setResourcesWithLogic:tmp1=self.resource.fluxf *0.25
+addResourcesWithLogic:fluxfc=self.resource.fluxf *0.5,fluxf=-1*(self.resource.fluxf *0.2)
+autoTrigger:true
+fireTurretXAtGround: n
+fireTurretXAtGround_withOffset:0,0
+
+[hiddenAction_fluxst-slow]
+requireConditional:if self.resource.fluxs > 0.1
+#setResourcesWithLogic:tmp2=self.resource.fluxfs*0.25
+addResourcesWithLogic:fluxs=-1*(self.resource.fluxs *0.5)
+autoTrigger:true
+fireTurretXAtGround: n
+fireTurretXAtGround_withProjectile:fluxs
+fireTurretXAtGround_withOffset:0,0
+takeResources_includeUnitsWithinRange:45
+addResourcesWithLogic:temp=self.resource.fluxs *5,fluxs=-1*(self.resource.fluxs *0.4)
+[hiddenAction_fluxst-slow]
+requireConditional:if self.resource.fluxs > 0.1
+#setResourcesWithLogic:tmp2=self.resource.fluxfs*0.25
+addResourcesWithLogic:fluxs=-1*(self.resource.fluxs *0.5)
+autoTrigger:true
+fireTurretXAtGround: n
+fireTurretXAtGround_withProjectile:fluxs
+fireTurretXAtGround_withOffset:0,0
+takeResources_includeUnitsWithinRange:45
+[hiddenAction_nfs]
+autoTrigger:if self.resource.fluxfc > 0.1
+takeResources_includeUnitsWithinRange:45
+takeResources_excludeUnitsWithoutTags:RBMK
+takeResources_maxUnits:4
+takeResources:fluxf=-4
+addResources:fluxfc=-1
+#takeResources_excludeUnitsWithoutAllResources:false
+[turret_n]
+canShoot:false
+#canAttackCondition:if self.resource.flux>0
+shoot_sound:gun_fire
+shoot_sound_vol:0
+x:0
+y:0
+projectile:fluxf
+turnSpeed:3
+canAttackMaxAngle:181
+turnSpeedAcceleration:1
+shoot_flame:NONE
+shoot_light: #ff8000
+[projectile_fluxf]
+friendlyFire:true
+areaRadius:50
+areaDamage:100
+areaDamageNoFalloff:true
+mutatorF_ifUnitWithTags:RBMK
+mutatorF_areaDamageMultiplier:0.01
+targetGround:true
+targetGroundSpread:10
+turnSpeed:0
+turnSpeedWhenNear:0
+directDamage:1
+life:1
+speed:10
+frame:1
+drawSize:1
+lightColor: #0080ff
+lightSize:0.5
+image:ROOT:/unit/sta/RBMK/rods/neutf.png
+explodeEffect:NONE
+[projectile_fluxs]
+friendlyFire:true
+areaRadius:50
+areaDamage:80
+areaDamageNoFalloff:true
+mutatorF_ifUnitWithTags:RBMK
+#mutatorF_addResourcesDirectHit:fluxs=self.resource.tmp2
+mutatorF_areaDamageMultiplier:0.01
+targetGround:true
+targetGroundSpread:10
+turnSpeed:0
+turnSpeedWhenNear:0
+directDamage:1
+life:1
+speed:10
+frame:1
+drawSize:1
+lightColor: #ff4000
+lightSize:0.5
+image:ROOT:/unit/sta/RBMK/rods/neuts.png
+explodeEffect:NONE
+
+[projectile_1]
+targetGround:true
+targetGroundSpread:10
+turnSpeed:0
+turnSpeedWhenNear:0
+directDamage:1
+life:1
+speed:10
+frame:1
+drawSize:1
+lightColor: #00fbff
+lightSize:0.3
+image:ROOT:/unit/sta/RBMK/rods/neutf.png
+explodeEffect:NONE
+spawnProjectilesOnCreate:n*2(offsetRandomDir=361)
+[projectile_n]
+explodeEffect:NONE
+turnSpeed:0
+turnSpeedWhenNear:0
+retargetingInFlight:true
+directDamage:100
+life:300
+speed:2
+frame:1
+drawSize:1
+lightColor: #00fbff
+lightSize:0.3
+image:ROOT:/unit/sta/RBMK/rods/neutf.png
+[action_fluxfdisp]
+isVisible:true
+text:(%{self.resource.fluxf}+%{self.resource.fluxfc})
+textPostFix: 快中子通量
+displayType:infoOnly
+buildSpeed:0
+[action_fluxsdisp]
+isVisible:true
+text:(%{self.resource.fluxs})
+textPostFix: 慢中子通量
+displayType:infoOnly
+buildSpeed:0
+[hiddenAction_fluxoutE]
+autoTrigger:if self.resource.fluxfc>50
+addResources:fluxfc=-10
+fireTurretXAtGround: n
+fireTurretXAtGround_withOffset:0,0
+fireTurretXAtGround_withProjectile:1
