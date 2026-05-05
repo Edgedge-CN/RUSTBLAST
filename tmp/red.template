@@ -1,0 +1,7 @@
+[core]
+canOnlyBeAttackedByUnitsWithTags:NONE
+autoTriggerCheckRate:every8Frames
+canNotBeGivenOrdersByPlayer:false
+[graphics]
+icon_zoomed_out:ROOT:icon/mine.png
+showHealthBar:false

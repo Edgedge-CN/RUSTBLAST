@@ -1,0 +1,226 @@
+[core]
+#@memory marked_hp: float
+# disp = display onMar = on marked
+#@memory disp_hp_onMar: float
+#ry: disupdateUnitMemop_hp_onMar= max( self.hp, memory.disp_hp_onMar - 0.5- ((memory.marked_hp - self.hp) / 250)), marked_hp= select( int(memory.disp_hp_onMar + 20.5) == self.hp, self.hp, memory.marked_hp)
+#updateUnitMemoryRate:0 
+showActionsWithMixedSelectionIfOtherUnitsHaveTag:boat
+autoTriggerCheckRate:every8Frames
+[attack]
+isMelee:true
+meleeEngangementDistance:100
+attackMovement:bomber
+[graphics]
+showEnergyBar:false
+showHealthBar:false
+showShieldBar:false
+
+disableLowHpSmoke:true
+disableLowHpFire:true
+
+[hiddenAction_hpac]
+autoTriggerOnEvent:created
+setUnitStats:hp=1
+[hiddenAction_ent]
+autoTriggerOnEvent:enteredTransport
+addResourcesWithLogic:红宝石=self.hp-1
+alsoQueueAction:offhp
+[hiddenAction_offhp]
+buildSpeed:0.7s
+setUnitStats:hp=1
+
+#[hiddenAction_AI]
+#autoTriggerOnEvent:killedAnyUnit
+#transportTargetNow:nearestUnit
+
+#[hiddenAction_AI2]
+#autoTriggerOnEvent:killAnyUnit
+#addWaypoint_type:attack
+#addWaypoint_target_nearestUnit_team:enemy
+
+#[hiddenAction_AI3]
+#autoTrigger:true
+#requireConditional:if self.hp(full)
+#addWaypoint_type:loadInto
+#addWaypoint_target_nearestUnit_team:own
+#addWaypoint_target_nearestUnit_tagged:base
+
+#[hiddenAction_AI4]
+#autoTriggerOnEvent:created
+#addWaypoint_type:attack
+#addWaypoint_target_nearestUnit_team:enemy
+
+#[hiddenAction_AI5]
+#autoTrigger:true
+#addWaypoint_target_randomUnit_tagged:fe
+#requireConditional:if self.hp < self.maxHp and self.isControlledByAI()
+#addWaypoint_type:attack
+#basePosition: self.getOffsetAbsolute(x=-.5*self.hp/self.maxHp,y=${core.radius*-0.5})
+#drawLineTo:ref
+#lineWidth:5
+#color:#dd6666
+#image:ROOT:\icon\rb.png
+#alwaysStartDirAtZero:true
+#yOffsetAbsolute:20
+#imageScale:1.1
+#imageScaleY:1.4
+#imageScaleX:self.hp/self.maxHp*2
+#xOffsetAbsolute:-(1-self.hp/self.maxHp)*2
+#[attachment_barMark]
+[action_fastld]
+iconImage:ROOT:/icon/fstc.png
+text:"快速捐献"
+description:set a move position to the most close base for boat.
+description_zh:快速设定到最近的捐献舱的路径点(包括基地)
+buildSpeed:0.1
+addWaypoint_type:loadInto
+addWaypoint_target_nearestUnit_tagged:bs
+addWaypoint_target_nearestUnit_team:own
+[action_fastmn]
+iconImage:ROOT:/icon/mine.png
+text:"快速挖矿"
+description:set a move position to the most close rock for boat.
+description_zh:快速设定到最近的陨石的路径点
+buildSpeed:0.1
+addWaypoint_type:attack
+addWaypoint_target_nearestUnit_tagged:fe
+addWaypoint_target_nearestUnit_team:any
+
+[action_fastat]
+iconImage:ROOT:/icon/site.png
+text:"快速攻击"
+description:locate a move position to the most close enemy(building) for boat.
+description_zh:快速设定到最近的空间建筑的路径点
+buildSpeed:0.1
+addWaypoint_type:attack
+addWaypoint_target_nearestUnit_tagged:sta
+addWaypoint_target_nearestUnit_team:enemy
+
+#[decal_bar]
+#color: #ff6666
+#image:SHARED:white_pixel.png
+#imageScale:2
+#imageScaleX:memory.disp_hp_onMar / self.maxHp *20
+#basePosition:getOffsetAbsolute(x =(1 - (memory.disp_hp_onMar / self.maxHp))* 20 ,y=-20)
+#alpha:(memory.disp_hp_onMar - self.maxHp) / (memory.marked_hp - self.hp)
+[decal_bar_mine]
+color: #ff227e
+image:SHARED:white_pixel.png
+imageScale:2
+imageScaleX:(self.hp / self.maxHp)*15
+alwaysStartDirAtZero:true
+isVisible:if not (self.hp == 1)
+onlyOnNonPreview:true
+xOffsetAbsolute:((self.hp/self.maxHp)*15)-15
+yOffsetAbsolute:-12
+alpha:0.8
+onlyWhileActive:true
+[decal_mine_back]
+color: #360b0b
+image:SHARED:white_pixel.png
+order:-1
+isVisible:if not (self.hp == 1)
+imageScale:2
+imageScaleX:15
+alpha:0.5
+alwaysStartDirAtZero:true
+onlyOnNonPreview:true
+yOffsetAbsolute:-12
+onlyWhileActive:true
+
+[decal_bar_sd]
+color: #22ffda
+image:SHARED:white_pixel.png
+imageScale:2
+imageScaleX:(self.shield / self.maxShield)*15
+alwaysStartDirAtZero:true
+isVisible:if not (self.shield == self.maxShield)
+onlyOnNonPreview:true
+xOffsetAbsolute:((self.shield / self.maxShield)*15)-15
+yOffsetAbsolute:-15
+alpha:0.8
+onlyWhileActive:true
+[decal_sd_back]
+color: #004869
+image:SHARED:white_pixel.png
+order:-1
+isVisible:if not (self.shield == self.maxShield)
+imageScale:2
+imageScaleX:15
+alpha:0.5
+yOffsetAbsolute:-15
+alwaysStartDirAtZero:true
+onlyOnNonPreview:true
+onlyWhileActive:true
+
+[decal_bar_en]
+color: #ffd622
+image:SHARED:white_pixel.png
+imageScale:2
+imageScaleX:(self.energy / self.maxEnergy)*15
+alwaysStartDirAtZero:true
+isVisible:if not (self.energy == self.maxEnergy)
+onlyOnNonPreview:true
+xOffsetAbsolute:((self.energy / self.maxEnergy)*15)-15
+yOffsetAbsolute:20
+alpha:0.7
+onlyWhileActive:true
+[decal_en_back]
+color: #555522
+image:SHARED:white_pixel.png
+order:-1
+isVisible:if not (self.energy == self.maxEnergy)
+imageScale:2
+imageScaleX:15
+alpha:0.5
+yOffsetAbsolute:20
+alwaysStartDirAtZero:true
+onlyOnNonPreview:true
+onlyWhileActive:true
+
+[decal_sctC]
+image:ROOT:sct.png
+onlyWhileActive:true
+alwaysStartDirAtZero:true
+onlyWhenSelectedByOwnPlayer:true
+imageScale:0.04*${core.radius}
+teamColors:true
+order:-2
+alpha:0.3
+[decal_sctA]
+image:ROOT:sctarr.png
+onlyWhileActive:true
+onlyWhenSelectedByOwnPlayer:true
+yOffsetRelative:${core.radius}
+teamColors:true
+order:-1
+alpha:0.2
+[decal_sctHP]
+image:ROOT:ndup.png
+onlyWhileActive:true
+alwaysStartDirAtZero:true
+onlyWhenSelectedByOwnPlayer:true
+imageScale:0.1*${core.radius}
+teamColors:true
+order:2
+alpha:0.5
+isVisible:if (self.hp == self.maxHp)
+[action_aired]
+autoTrigger:true
+requireConditional:if (self.customTimer >= 10) and self.isControlledByAI()
+isVisible:false
+addResources:hp=100
+ai_isHighPriority:true
+buildSpeed:0.01s
+resetCustomTimer:true
+[action_redfull]
+isVisible:true
+temporarilyAddTags:full
+showQuickWarLogToPlayer:位于(%{self.x()},%{self.y()})的飞船满载了!
+autoTrigger:true
+requireConditional:if not (self.hp == self.maxHp)
+[action_redfull]
+isVisible:true
+temporarilyRemoveTags:full
+autoTrigger:true
+requireConditional:if (self.hp == self.maxHp)

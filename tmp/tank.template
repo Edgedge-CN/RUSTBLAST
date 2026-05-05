@@ -1,0 +1,82 @@
+[core]
+availableInDemo:true
+explodeOnDeathGroundCollision:false
+explodeOnDeath:false
+tags:tank
+shieldDisplayOnlyDeflection:true
+[graphics]
+showHealthBar:false
+showShieldBar:false
+[decal_sctC]
+image:ROOT:/tur_sct.png
+onlyWhileActive:true
+alwaysStartDirAtZero:true
+onlyWhenSelectedByOwnPlayer:true
+imageScale:0.9
+teamColors:true
+order:1
+alpha:0.3
+[decal_tank]
+image:ROOT:/unit/arras/misc/basic.png
+onlyWhileActive:true
+alwaysStartDirAtZero:true
+imageScale:0.6
+teamColors:true
+order:0.5
+alpha:1
+[turret_bddmg]
+limitingRange:30
+canAttackMaxAngle:181
+x:0
+y:0
+projectile:dmg
+size:1
+turnSpeed:100
+turnSpeedAcceleration:1
+resourceUsage:hp=1
+[projectile_dmg]
+pushForce:250
+directDamage:50
+life:45
+speed:60
+frame:1
+image:ROOT:pixel_g2.png
+drawSize:0.001
+[decal_bar_mine]
+order:2
+image:ROOT:pixel_g1.png
+imageScale:2
+imageScaleX:(self.hp / self.maxHp)*20
+alwaysStartDirAtZero:true
+isVisible:if not ((self.hp == self.maxHp)and(self.shield == self.maxShield))
+onlyOnNonPreview:true
+xOffsetAbsolute:((self.hp/self.maxHp)*20)-20
+yOffsetAbsolute:23
+alpha:0.8
+onlyWhileActive:true
+teamColors:true
+[decal_mine_back]
+color: #302f32
+image:SHARED:white_pixel.png
+order:1
+isVisible:if not (self.hp == self.maxHp)
+imageScale:2
+imageScaleX:15
+alpha:0.5
+alwaysStartDirAtZero:true
+onlyOnNonPreview:true
+yOffsetAbsolute:23
+onlyWhileActive:true
+[decal_bar_sd]
+color: #00d5ff
+image:SHARED:white_pixel.png
+imageScale:2
+imageScaleX:(self.shield / self.maxShield)*20
+alwaysStartDirAtZero:true
+isVisible:if not (self.shield == self.maxShield)
+onlyOnNonPreview:true
+xOffsetAbsolute:((self.shield / self.maxShield)*20)-20
+yOffsetAbsolute:23
+alpha:0.7
+onlyWhileActive:true
+order:3

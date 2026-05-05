@@ -54,12 +54,12 @@ takeResources:fluxs=-4
 autoTrigger:true
 takeResources_includeUnitsWithinRange:45
 [hiddenAction_temp-f]
-requireConditional:if self.resource.temp> 800
+requireConditional:if self.resource.temp> 100
 #setResourcesWithLogic:tmp2=self.resource.fluxfs*0.25
 addResourcesWithLogic:fluxs=-1*(self.resource.temp *0.05)
 takeResources_excludeUnitsWithoutTags:RBMK
 takeResources_maxUnits:8
-takeResources:temp=-100
+takeResources:temp=-20
 autoTrigger:true
 takeResources_includeUnitsWithinRange:60
 [hiddenAction_nfs]
@@ -134,7 +134,24 @@ displayType:infoOnly
 buildSpeed:0
 [hiddenAction_fluxoutE]
 autoTrigger:if self.resource.fluxfc>50
-addResources:fluxfc=-10
+addResources:fluxfc=-20
 fireTurretXAtGround: n
 fireTurretXAtGround_withOffset:0,0
 fireTurretXAtGround_withProjectile:1
+
+[hiddenAction_fluxsA]
+requireConditional:if self.resource.fluxs < 0
+#setResourcesWithLogic:tmp2=self.resource.fluxfs*0.25
+setResourcesWithLogic:fluxs=-1*(self.resource.fluxs *0.5)
+autoTrigger:true
+
+[hiddenAction_fluxfA]
+requireConditional:if self.resource.fluxf < 0
+#setResourcesWithLogic:tmp2=self.resource.fluxfs*0.25
+setResourcesWithLogic:fluxf=-1*(self.resource.fluxf *0.5)
+autoTrigger:true
+
+
+#autoTriggerOnEvent:
+#newMessage(withTag=fluxf)
+#addResourcesWithLogic:fluxf=(lastDamagedBy.resource.credits)

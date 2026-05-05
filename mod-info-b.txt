@@ -1,0 +1,12 @@
+[mod]
+#已废弃
+title:RW.io-alphaInDev1.0.0
+description:这是一个以IO网页小游戏为原型的铁锈模组\n-部分由arras.io starblast.io分支\n-Made by Edgedge
+thumbnail:icon.png
+minVersion:1.15p9
+[music]
+sourceFolder:music/
+whenUsingUnitsFromThisMod_playExclusively:true
+[maps]
+sourceFolder:maps/
+addExtraMapsForPath:true

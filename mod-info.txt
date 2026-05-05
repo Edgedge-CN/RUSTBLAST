@@ -1,6 +1,6 @@
 [mod]
-title:RUSTBLAST Beta2.1.0
-description:修复了一些bug\n-Made by Edgedge
+title:CHAOSHorizon Alpha2.1.1
+description:合并了RW.io\n-曾用名RUSTBLAST\n-Made by Edgedge
 thumbnail:icon.png
 minVersion:1.15p9
 [music]

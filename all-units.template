@@ -107,3 +107,12 @@ priority:1
 displayRoundedDown:false
 displayWhenZero:false
 displayTextPostfix:mol
+
+[global_resource_poly]
+displayName:几何元素
+displayNameShort:几何
+displayColor: #90d822
+priority:1
+displayRoundedDown:true
+displayWhenZero:false
+displayTextPostfix:poly
