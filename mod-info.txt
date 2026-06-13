@@ -1,6 +1,6 @@
 [mod]
-title:CHAOSHorizon Alpha2.1.1
-description:合并了RW.io\n-曾用名RUSTBLAST\n-Made by Edgedge
+title:矢量深空 Alpha2.1.2
+description:正式更名\n-撤销了上一版本的合并(呃 可恶写不完)\n-电力系统大改\n-曾用名RUSTBLAST\n-Made by Edgedge
 thumbnail:icon.png
 minVersion:1.15p9
 [music]

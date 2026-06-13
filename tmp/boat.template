@@ -7,9 +7,9 @@
 showActionsWithMixedSelectionIfOtherUnitsHaveTag:boat
 autoTriggerCheckRate:every8Frames
 [attack]
-isMelee:true
-meleeEngangementDistance:100
-attackMovement:bomber
+#isMelee:true
+#meleeEngangementDistance:100
+#attackMovement:bomber
 [graphics]
 showEnergyBar:false
 showHealthBar:false
