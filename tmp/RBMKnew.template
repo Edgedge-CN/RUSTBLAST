@@ -1,0 +1,161 @@
+[core]
+#buildingToFootprintOffsetX:20
+#buildingToFootprintOffsetY:20
+constructionFootprint:0,0,0,0
+footprint: 0,0,0,0
+availableInDemo:true
+radius:20
+isBio:false
+isBuilding:true
+explodeTypeOnDeath:building
+explodeOnDeathGroundCollision:false
+explodeOnDeath:false
+mass:256
+experimental: true
+#shieldDisplayOnlyDeflection:true
+[graphics]
+showSelectionIndicator:false
+[decal_sctC]
+image:ROOT:/tur_sct.png
+onlyWhileActive:true
+alwaysStartDirAtZero:true
+#onlyWhenSelectedByOwnPlayer:true
+onlyWhenSelectedByAnyPlayer:true
+imageScale:0.8
+teamColors:true
+order:2
+alpha:0.3
+[resource_fluxss]
+displayName:slowsum
+[resource_fluxf]
+displayName:通量(快)
+[resource_fluxs]
+displayName:通量(慢)
+[resource_fluxfc]
+displayName:缓存通量(快)
+[resource_temp]
+displayName:温度
+[hiddenAction_fluxst]
+requireConditional:if self.resource.fluxf > 0.1
+#setResourcesWithLogic:tmp1=self.resource.fluxf *0.25
+addResourcesWithLogic:fluxfc=self.resource.fluxf *0.5,fluxf=-1*(self.resource.fluxf *0.2)
+autoTrigger:true
+[hiddenAction_nssshot]
+requireConditional:if self.resource.fluxs > 0.1
+#setResourcesWithLogic:tmp2=self.resource.fluxfs*0.25
+addResourcesWithLogic:fluxs=-1*(self.resource.fluxs *0.5),temp=self.resource.fluxs *5
+
+[hiddenAction_fluxst-slow]
+requireConditional:if self.resource.fluxs > 4
+#setResourcesWithLogic:tmp2=self.resource.fluxfs*0.25
+addResourcesWithLogic:fluxs=-1*(self.resource.fluxs *0.5)
+takeResources_excludeUnitsWithoutTags:RBMK
+takeResources_maxUnits:4
+takeResources:fluxs=-4
+autoTrigger:true
+takeResources_includeUnitsWithinRange:45
+[hiddenAction_temp-f]
+requireConditional:if self.resource.temp> 100
+#setResourcesWithLogic:tmp2=self.resource.fluxfs*0.25
+addResourcesWithLogic:fluxs=-1*(self.resource.temp *0.05)
+takeResources_excludeUnitsWithoutTags:RBMK
+takeResources_maxUnits:8
+takeResources:temp=-20
+autoTrigger:true
+takeResources_includeUnitsWithinRange:60
+[hiddenAction_nfs]
+autoTrigger:if self.resource.fluxfc > 4
+takeResources_includeUnitsWithinRange:45
+takeResources_excludeUnitsWithoutTags:RBMK
+takeResources_maxUnits:4
+takeResources:fluxf=-4
+addResources:fluxfc=-1
+#takeResources_excludeUnitsWithoutAllResources:false
+#takeResources_triggerActionForEach
+[action_fluxShotTrigger]
+
+[turret_n]
+canShoot:false
+#canAttackCondition:if self.resource.flux>0
+shoot_sound:gun_fire
+shoot_sound_vol:0
+x:0
+y:0
+projectile:1
+turnSpeed:3
+canAttackMaxAngle:181
+turnSpeedAcceleration:1
+shoot_flame:NONE
+shoot_light: #ff8000
+[projectile_1]
+targetGround:true
+targetGroundSpread:10
+turnSpeed:0
+turnSpeedWhenNear:0
+directDamage:1
+life:1
+speed:10
+frame:1
+drawSize:1
+lightColor: #00fbff
+lightSize:0.3
+image:ROOT:/unit/sta/RBMK/rods/neutf.png
+explodeEffect:NONE
+spawnProjectilesOnCreate:n*2(offsetRandomDir=361)
+[projectile_n]
+explodeEffect:NONE
+turnSpeed:0
+turnSpeedWhenNear:0
+retargetingInFlight:true
+directDamage:100
+life:300
+speed:2
+frame:1
+drawSize:1
+lightColor: #00fbff
+lightSize:0.3
+image:ROOT:/unit/sta/RBMK/rods/neutf.png
+[action_fluxfdisp]
+iconImage:ROOT:/unit/sta/RBMK/flux1.png
+isVisible:true
+text:(%{self.resource.fluxf}+%{self.resource.fluxfc})
+textPostFix: 快中子通量
+displayType:infoOnly
+buildSpeed:0
+[action_fluxsdisp]
+iconImage:ROOT:/unit/sta/RBMK/flux2.png
+isVisible:true
+text:(%{self.resource.fluxs})
+textPostFix: 慢中子通量
+displayType:infoOnly
+buildSpeed:0
+[action_tempdisp]
+iconImage:ROOT:/unit/sta/RBMK/temp.png
+isVisible:true
+text:%{self.resource.temp}K
+textPostFix: 温度
+displayType:infoOnly
+buildSpeed:0
+[hiddenAction_fluxoutE]
+autoTrigger:if self.resource.fluxfc>50
+addResources:fluxfc=-20
+fireTurretXAtGround: n
+fireTurretXAtGround_withOffset:0,0
+fireTurretXAtGround_withProjectile:1
+
+[hiddenAction_fluxsA]
+requireConditional:if self.resource.fluxs < 0
+#setResourcesWithLogic:tmp2=self.resource.fluxfs*0.25
+setResourcesWithLogic:fluxs=-1*(self.resource.fluxs *0.5)
+autoTrigger:true
+
+[hiddenAction_fluxfA]
+requireConditional:if self.resource.fluxf < 0
+#setResourcesWithLogic:tmp2=self.resource.fluxfs*0.25
+setResourcesWithLogic:fluxf=-1*(self.resource.fluxf *0.5)
+autoTrigger:true
+
+
+#autoTriggerOnEvent:
+#newMessage(withTag=fluxf)
+#addResourcesWithLogic:fluxf=(lastDamagedBy.resource.credits)

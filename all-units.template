@@ -13,6 +13,7 @@ priority:1
 displayRoundedDown:true
 displayWhenZero:false
 #This resource come from 'starblast.io'
+
 [global_resource_电力]
 hidden:false
 displayName:电力
@@ -25,7 +26,7 @@ displayRoundedDown:false
 displayWhenZero:true
 [global_resource_data]
 hidden:false
-displayName:源代码
+displayName:数据
 iconImage:ROOT:/data.png
 displayNameShort:码
 displayColor: #61e144
@@ -80,7 +81,7 @@ displayWhenZero:false
 [global_resource_heac]
 appendResourceInHUD:rad
 hidden:true
-iconImage:ROOT:/heac.png
+iconImage:ROOT:/Ti.png
 displayName:合金
 displayNameShort:合金
 displayColor: #1cdbc5

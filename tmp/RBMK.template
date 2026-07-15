@@ -1,10 +1,8 @@
 [core]
-buildingToFootprintOffsetX:20
-buildingToFootprintOffsetY:20
-constructionFootprint:0,0,1,1
-footprint: 0,0,1,1
+constructionFootprint:0,0,0,0
+footprint: 0,0,0,0
 availableInDemo:true
-radius:20
+radius:10
 isBio:false
 isBuilding:true
 explodeTypeOnDeath:building
@@ -21,10 +19,12 @@ onlyWhileActive:true
 alwaysStartDirAtZero:true
 #onlyWhenSelectedByOwnPlayer:true
 onlyWhenSelectedByAnyPlayer:true
-imageScale:0.8
+imageScale:0.4
 teamColors:true
 order:2
 alpha:0.3
+[resource_fluxss]
+displayName:slowsum
 [resource_fluxf]
 displayName:通量(快)
 [resource_fluxs]
@@ -41,9 +41,8 @@ autoTrigger:true
 [hiddenAction_nssshot]
 requireConditional:if self.resource.fluxs > 0.1
 #setResourcesWithLogic:tmp2=self.resource.fluxfs*0.25
-addResourcesWithLogic:fluxs=-1*(self.resource.fluxs *0.5)
-autoTrigger:true
-addResourcesWithLogic:temp=self.resource.fluxs *5,fluxs=-1*(self.resource.fluxs *0.4)
+addResourcesWithLogic:fluxs=-1*(self.resource.fluxs *0.5),temp=self.resource.fluxs *5
+
 [hiddenAction_fluxst-slow]
 requireConditional:if self.resource.fluxs > 4
 #setResourcesWithLogic:tmp2=self.resource.fluxfs*0.25
@@ -70,6 +69,9 @@ takeResources_maxUnits:4
 takeResources:fluxf=-4
 addResources:fluxfc=-1
 #takeResources_excludeUnitsWithoutAllResources:false
+#takeResources_triggerActionForEach
+[action_fluxShotTrigger]
+
 [turret_n]
 canShoot:false
 #canAttackCondition:if self.resource.flux>0
