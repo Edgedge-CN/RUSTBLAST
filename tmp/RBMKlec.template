@@ -1,16 +1,14 @@
 [core]
-#buildingToFootprintOffsetX:20
-#buildingToFootprintOffsetY:20
 constructionFootprint:0,0,0,0
 footprint: 0,0,0,0
 availableInDemo:true
-radius:20
+radius:10
 isBio:false
 isBuilding:true
 explodeTypeOnDeath:building
 explodeOnDeathGroundCollision:false
 explodeOnDeath:false
-mass:256
+mass:1000
 experimental: true
 #shieldDisplayOnlyDeflection:true
 [graphics]
@@ -21,10 +19,12 @@ onlyWhileActive:true
 alwaysStartDirAtZero:true
 #onlyWhenSelectedByOwnPlayer:true
 onlyWhenSelectedByAnyPlayer:true
-imageScale:0.8
+imageScale:0.4
 teamColors:true
 order:2
 alpha:0.3
+[resource_signal]
+displayName:signal
 [resource_fluxss]
 displayName:slowsum
 [resource_fluxf]
@@ -65,13 +65,12 @@ autoTrigger:true
 takeResources_includeUnitsWithinRange:60
 [hiddenAction_nfs]
 autoTrigger:if self.resource.fluxfc > 4
-takeResources_includeUnitsWithinRange:45
-takeResources_excludeUnitsWithoutTags:RBMK
-takeResources_maxUnits:4
+
+:4
 takeResources:fluxf=-4
 addResources:fluxfc=-1
 #takeResources_excludeUnitsWithoutAllResources:false
-#takeResources_triggerActionForEach
+#takeResources_triggerActionForEacnh
 [action_fluxShotTrigger]
 
 [turret_n]
@@ -143,19 +142,19 @@ fireTurretXAtGround: n
 fireTurretXAtGround_withOffset:0,0
 fireTurretXAtGround_withProjectile:1
 
-[hiddenAction_fluxsA]
-requireConditional:if self.resource.fluxs < 0
-#setResourcesWithLogic:tmp2=self.resource.fluxfs*0.25
-setResourcesWithLogic:fluxs=-1*(self.resource.fluxs *0.5)
-autoTrigger:true
 
-[hiddenAction_fluxfA]
-requireConditional:if self.resource.fluxf < 0
-#setResourcesWithLogic:tmp2=self.resource.fluxfs*0.25
-setResourcesWithLogic:fluxf=-1*(self.resource.fluxf *0.5)
-autoTrigger:true
-
-
+[hiddenAction_init]
+autoTriggerOnEvent:created
+takeResources_excludeUnitsWithoutTags:RBMK
+takeResources_maxUnits:4
+takeResources:signal
+takeResources_includeUnitsWithinRange:21
+takeResources_triggerActionForEach:initPeer
+[hiddenAction_initPeer]
+setUnitMemory:
+setCustomTarget1:thisActionTarget
+alsoTriggerAction:
+[]
 #autoTriggerOnEvent:
 #newMessage(withTag=fluxf)
 #addResourcesWithLogic:fluxf=(lastDamagedBy.resource.credits)

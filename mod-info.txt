@@ -1,9 +1,9 @@
 ﻿[mod]
-title:矢量深空-AlphaX215[临时备份:26.7.15]
-title_en:<Vectoricosmos>-preAlpha2.1.4
+title:矢量深空-preAlphaX216[临时备份:26.7.18]
+title_en:<Vectoricosmos>-preAlpha2.1.5
 description:正式更名\n-撤销了上一版本的合并(呃 可恶写不完)\n-修正和削弱绝大多数单位的数值\n-挂载新音效\n-电力系统大改[WIP]\n-曾用名RUSTBLAST\n-by 鸽咕Edgedge
 thumbnail:icon.png
-minVersion:1.15p9
+minVersion:1.15p11
 [music]
 sourceFolder:music/
 whenUsingUnitsFromThisMod_playExclusively:true
