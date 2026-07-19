@@ -1,18 +1,29 @@
 [core]
-buildingToFootprintOffsetX:20
-buildingToFootprintOffsetY:20
-constructionFootprint:0,0,1,1
-footprint: 0,0,1,1
+#buildingToFootprintOffsetX:20
+#buildingToFootprintOffsetY:20
+constructionFootprint:0,0,0,0
+footprint: 0,0,0,0
 availableInDemo:true
-radius:20
+radius:10
 isBio:false
 isBuilding:true
 explodeTypeOnDeath:building
 explodeOnDeathGroundCollision:false
 explodeOnDeath:false
-mass:1000
+mass:256
 experimental: true
 #shieldDisplayOnlyDeflection:true
+#@memory neb:unit[]
+#@memory id:string
+#@memory de:bool
+#@memory alde:bool
+@memory deltaf:float
+@memory deltas:float
+@memory deltat:float
+nanoFactorySpeed:32
+# from 0 to 3 : right,down,left,up
+autoTriggerCooldownTime:0.5s
+#disableDeathOnZeroHp:true
 [graphics]
 showSelectionIndicator:false
 [decal_sctC]
@@ -21,55 +32,29 @@ onlyWhileActive:true
 alwaysStartDirAtZero:true
 #onlyWhenSelectedByOwnPlayer:true
 onlyWhenSelectedByAnyPlayer:true
-imageScale:0.8
+imageScale:0.3
 teamColors:true
 order:2
-alpha:0.3
-[resource_fluxf]
-displayName:通量(快)
-[resource_fluxs]
-displayName:通量(慢)
+alpha:0.8
+
+[resource_cache0]
+displayName:cache0
+[resource_cache1]
+displayName:cache1
+[resource_signal]
+displayName:signal
 [resource_fluxfc]
-displayName:缓存通量(快)
+displayName:fastc
+[resource_fluxsc]
+displayName:slowc
+[resource_fluxf]
+displayName:快中子通量
+[resource_fluxs]
+displayName:慢中子通量
 [resource_temp]
 displayName:温度
-[hiddenAction_fluxst]
-requireConditional:if self.resource.fluxf > 0.1
-#setResourcesWithLogic:tmp1=self.resource.fluxf *0.25
-addResourcesWithLogic:fluxfc=self.resource.fluxf *0.5,fluxf=-1*(self.resource.fluxf *0.2)
-autoTrigger:true
-[hiddenAction_nssshot]
-requireConditional:if self.resource.fluxs > 0.1
-#setResourcesWithLogic:tmp2=self.resource.fluxfs*0.25
-addResourcesWithLogic:fluxs=-1*(self.resource.fluxs *0.5)
-autoTrigger:true
-addResourcesWithLogic:temp=self.resource.fluxs *5,fluxs=-1*(self.resource.fluxs *0.4)
-[hiddenAction_fluxst-slow]
-requireConditional:if self.resource.fluxs > 4
-#setResourcesWithLogic:tmp2=self.resource.fluxfs*0.25
-addResourcesWithLogic:fluxs=-1*(self.resource.fluxs *0.5)
-takeResources_excludeUnitsWithoutTags:RBMK
-takeResources_maxUnits:4
-takeResources:fluxs=-4
-autoTrigger:true
-takeResources_includeUnitsWithinRange:45
-[hiddenAction_temp-f]
-requireConditional:if self.resource.temp> 100
-#setResourcesWithLogic:tmp2=self.resource.fluxfs*0.25
-addResourcesWithLogic:fluxs=-1*(self.resource.temp *0.05)
-takeResources_excludeUnitsWithoutTags:RBMK
-takeResources_maxUnits:8
-takeResources:temp=-20
-autoTrigger:true
-takeResources_includeUnitsWithinRange:60
-[hiddenAction_nfs]
-autoTrigger:if self.resource.fluxfc > 4
-takeResources_includeUnitsWithinRange:45
-takeResources_excludeUnitsWithoutTags:RBMK
-takeResources_maxUnits:4
-takeResources:fluxf=-4
-addResources:fluxfc=-1
-#takeResources_excludeUnitsWithoutAllResources:false
+[resource_tc]
+displayName:温度0
 [turret_n]
 canShoot:false
 #canAttackCondition:if self.resource.flux>0
@@ -90,68 +75,160 @@ turnSpeed:0
 turnSpeedWhenNear:0
 directDamage:1
 life:1
-speed:10
+speed:5
 frame:1
 drawSize:1
 lightColor: #00fbff
 lightSize:0.3
-image:ROOT:/unit/sta/RBMK/rods/neutf.png
+image:ROOT:/Test/RBMK/rods/neutf.png
 explodeEffect:NONE
-spawnProjectilesOnCreate:n*2(offsetRandomDir=361)
+spawnProjectilesOnCreate:n*3(offsetRandomDir=361)
 [projectile_n]
 explodeEffect:NONE
 turnSpeed:0
 turnSpeedWhenNear:0
 retargetingInFlight:true
 directDamage:100
-life:300
-speed:2
+life:150
+speed:1
 frame:1
 drawSize:1
 lightColor: #00fbff
 lightSize:0.3
-image:ROOT:/unit/sta/RBMK/rods/neutf.png
+image:ROOT:/Test/RBMK/flux1.png
+drawSize:0.2
 [action_fluxfdisp]
-iconImage:ROOT:/unit/sta/RBMK/flux1.png
+iconImage:ROOT:/Test/RBMK/flux1.png
 isVisible:true
-text:(%{self.resource.fluxf}+%{self.resource.fluxfc})
+text:%{self.resource.fluxf+self.resource.fluxfc}
 textPostFix: 快中子通量
 displayType:infoOnly
 buildSpeed:0
 [action_fluxsdisp]
-iconImage:ROOT:/unit/sta/RBMK/flux2.png
+iconImage:ROOT:/Test/RBMK/flux2.png
 isVisible:true
-text:(%{self.resource.fluxs})
+text:(%{self.resource.fluxs+self.resource.fluxsc})
 textPostFix: 慢中子通量
 displayType:infoOnly
 buildSpeed:0
 [action_tempdisp]
-iconImage:ROOT:/unit/sta/RBMK/temp.png
+iconImage:ROOT:/Test/RBMK/temp.png
 isVisible:true
-text:%{self.resource.temp}K
+text:%{self.resource.temp+self.resource.tc}K
 textPostFix: 温度
 displayType:infoOnly
 buildSpeed:0
 [hiddenAction_fluxoutE]
-autoTrigger:if self.resource.fluxfc>50
-addResources:fluxfc=-20
+autoTrigger:if self.resource.fluxf>50
+addResources:fluxf=-5
 fireTurretXAtGround: n
 fireTurretXAtGround_withOffset:0,0
 fireTurretXAtGround_withProjectile:1
-
-[hiddenAction_fluxsA]
-requireConditional:if self.resource.fluxs < 0
-#setResourcesWithLogic:tmp2=self.resource.fluxfs*0.25
-setResourcesWithLogic:fluxs=-1*(self.resource.fluxs *0.5)
+[hiddenAction_fluxfSpread]
+requireConditional:if rnd(0,3)<1
 autoTrigger:true
-
-[hiddenAction_fluxfA]
-requireConditional:if self.resource.fluxf < 0
-#setResourcesWithLogic:tmp2=self.resource.fluxfs*0.25
-setResourcesWithLogic:fluxf=-1*(self.resource.fluxf *0.5)
+takeResources_excludeUnitsWithoutTags:RBMK
+takeResources_maxUnits:4
+takeResources:fluxf=1024
+takeResources_includeUnitsWithinRange:21
+takeResources_directTransferStoppingAtZero:true
+[hiddenAction_fluxsSpread]
+requireConditional:if rnd(0,3)<1
 autoTrigger:true
+takeResources_excludeUnitsWithoutTags:RBMK
+takeResources_maxUnits:4
+takeResources:fluxs=1024
+takeResources_includeUnitsWithinRange:21
+takeResources_directTransferStoppingAtZero:true
+[hiddenAction_tempSpread]
+requireConditional:if rnd(0,3)<1
+autoTrigger:true
+takeResources_excludeUnitsWithoutTags:RBMK
+takeResources_maxUnits:8
+takeResources:temp=10
+takeResources_includeUnitsWithinRange:40
+takeResources_directTransferStoppingAtZero:true
+[hiddenAction_STP]
+autoTriggerOnEvent:created
+addResources:temp=293.13
+[hiddenAction_fluxfBal]
+autoTrigger:if 0.75*self.resource.fluxf > self.resource.fluxfc
+setUnitMemory:deltaf=0.5*(self.resource.fluxf-self.resource.fluxfc)
+addResourcesWithLogic:fluxfc=memory.deltaf,fluxfc=-1*memory.deltaf
+[hiddenAction_fluxfEx]
+autoTrigger:if 0.75*self.resource.fluxf < self.resource.fluxfc
+setUnitMemory:deltaf=0.5*(self.resource.fluxfc-self.resource.fluxf)
+addResourcesWithLogic:fluxfc=-1*memory.deltaf,fluxfc=memory.deltaf
+[hiddenAction_fluxsBal]
+autoTrigger:if 0.6*self.resource.fluxs > self.resource.fluxsc
+setUnitMemory:deltas=0.5*(self.resource.fluxs-self.resource.fluxsc)
+addResourcesWithLogic:fluxsc=memory.deltas,fluxsc=-1*memory.deltas
+[hiddenAction_fluxsEx]
+autoTrigger:if 0.6*self.resource.fluxs < self.resource.fluxsc
+setUnitMemory:deltas=0.5*(self.resource.fluxsc-self.resource.fluxs)
+addResourcesWithLogic:fluxsc=-1*memory.deltas,fluxsc=memory.deltas
+[hiddenAction_tempBal]
+autoTrigger:if 0.1*self.resource.temp > self.resource.tc
+setUnitMemory:deltat=0.5*(self.resource.temp-self.resource.tc)
+addResourcesWithLogic:tc=memory.deltat,temp=-1*memory.deltat
+[hiddenAction_tempEx]
+autoTrigger:if 0.1*self.resource.temp < self.resource.tc
+setUnitMemory:deltat=0.5*(self.resource.tc-self.resource.temp)
+addResourcesWithLogic:tc=-1*memory.deltat,temp=memory.deltat
+#[hiddenAction_ex]
+#autoTriggerOnEvent:newMessage
+#alsoTriggerAction:forDe
+#temporarilyAddTags:
 
+# from 0 to 3 : right,down,left,up
+#[hiddenAction_checkDie]
+#autoTrigger:if self.hp <=0
+#setUnitMemory:de=select(memory.alde,false,true),alde=true
+#[hiddenAction_forDe]
+#autoTrigger:if memory.de
+#buildSpeed:0s
+#alsoTriggerAction:check,send
+#setUnitMemory:neb[memory.neb.length()]=null
+#[hiddenAction_send]
+#sendMessageWithData:state="update"
+#sendMessageTo:memory.neb[memory.neb.length()]
+#[hiddenAction_check]
+#requireConditional:if memory.neb.length != 0
+#alsoTriggerAction:forDe,fork
+#[hiddenAction_fork]
+#requireConditional:if memory.neb.length == 0
+#alsoTriggerAction:init,del
+#[hiddenAction_del]
+#requireConditional:if self.hp <= 0
+#deleteSelf=true
+#[hiddenAction_init]
+#buildSpeed:0s
+#autoTriggerOnEvent:created
 
+#takeResources_excludeUnitsWithoutTags:RBMK
+#takeResources_maxUnits:4
+#takeResources:signal=-1
+#takeResources_includeUnitsWithinRange:21
+#takeResources_triggerActionForEach:initPeer
+#[hiddenAction_initPeer]
+#setUnitMemory:neb[memory.neb.length()]=thisActionTarget
+#setCustomTarget1:thisActionTarget
+#alsoTriggerAction:dir
+#buildSpeed:0s
+#[hiddenAction_x0]
+#requireConditional:if directionBetween(self,memory.qu[memory.qu.length()])==0
+#setUnitMemory:neb[0] = memory.qu[memory.qu.length()]
+#buildSpeed:0.1s
+#[hiddenAction_x1]
+#requireConditional:if directionBetween(self,memory.qu[memory.qu.length()])==270
+#setUnitMemory:neb[1] = memory.qu[memory.qu.length()]
+#buildSpeed:0.1s
+#[hiddenAction_clear]
+#buildSpeed:0.1s
+#setUnitMemory:qu[memory.qu.length()]=null
+#setResourcesWithLogic:cache0 = sign(self.x-memory.qu[memory.qu.length()+1].x)
+#[hiddenAction_y0]
+#setResourcesWithLogic:cache1 = sign(self.y-memory.qu[memory.qu.length()+1].y)
 #autoTriggerOnEvent:
 #newMessage(withTag=fluxf)
 #addResourcesWithLogic:fluxf=(lastDamagedBy.resource.credits)

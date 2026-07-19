@@ -1,8 +1,9 @@
-[mod]
-title:矢量深空 Alpha2.1.2
-description:正式更名\n-撤销了上一版本的合并(呃 可恶写不完)\n-电力系统大改\n-曾用名RUSTBLAST\n-Made by Edgedge
+﻿[mod]
+title:矢量深空-snapshotX2163[26.7.19]
+title_en:<Vectoricosmos>-snapshotx2163
+description:此为快照版,更改见群\n-电力系统大改[WIP]\n-曾用名RUSTBLAST\n-by 鸽咕Edgedge
 thumbnail:icon.png
-minVersion:1.15p9
+minVersion:1.15p11
 [music]
 sourceFolder:music/
 whenUsingUnitsFromThisMod_playExclusively:true

@@ -1,0 +1,169 @@
+[core]
+#buildingToFootprintOffsetX:20
+#buildingToFootprintOffsetY:20
+constructionFootprint:0,0,0,0
+footprint: 0,0,0,0
+availableInDemo:true
+radius:20
+isBio:false
+isBuilding:true
+explodeTypeOnDeath:building
+explodeOnDeathGroundCollision:false
+explodeOnDeath:false
+mass:256
+experimental: true
+#shieldDisplayOnlyDeflection:true
+@memory neb:unit[]
+@memory qu:unit[]
+@memory id:string
+nanoFactorySpeed:32
+# from 0 to 3 : right,down,left,up
+[graphics]
+showSelectionIndicator:false
+[decal_sctC]
+image:ROOT:/tur_sct.png
+onlyWhileActive:true
+alwaysStartDirAtZero:true
+#onlyWhenSelectedByOwnPlayer:true
+onlyWhenSelectedByAnyPlayer:true
+imageScale:0.6
+teamColors:true
+order:2
+alpha:0.3
+[resource_cache0]
+displayName:cache0
+[resource_cache1]
+displayName:cache1
+[resource_signal]
+displayName:1
+[resource_flux4ss]
+displayName:slowsum
+[resource_fluxf]
+displayName:通量(快)
+[resource_fluxs]
+displayName:通量(慢)
+[resource_fluxfc]
+displayName:缓存通量(快)
+[resource_temp]
+displayName:温度
+
+[turret_n]
+canShoot:false
+#canAttackCondition:if self.resource.flux>0
+shoot_sound:gun_fire
+shoot_sound_vol:0
+x:0
+y:0
+projectile:1
+turnSpeed:3
+canAttackMaxAngle:181
+turnSpeedAcceleration:1
+shoot_flame:NONE
+shoot_light: #ff8000
+[projectile_1]
+targetGround:true
+targetGroundSpread:10
+turnSpeed:0
+turnSpeedWhenNear:0
+directDamage:1
+life:1
+speed:10
+frame:1
+drawSize:1
+lightColor: #00fbff
+lightSize:0.3
+image:ROOT:/Test/RBMK/rods/neutf.png
+explodeEffect:NONE
+spawnProjectilesOnCreate:n*2(offsetRandomDir=361)
+[projectile_n]
+explodeEffect:NONE
+turnSpeed:0
+turnSpeedWhenNear:0
+retargetingInFlight:true
+directDamage:100
+life:300
+speed:2
+frame:1
+drawSize:1
+lightColor: #00fbff
+lightSize:0.3
+image:ROOT:/Test/RBMK/flux1.png
+[action_fluxfdisp]
+iconImage:ROOT:/Test/RBMK/flux1.png
+isVisible:true
+text:(%{self.resource.fluxf}+%{self.resource.fluxfc})
+textPostFix: 快中子通量
+displayType:infoOnly
+buildSpeed:0
+[action_fluxsdisp]
+iconImage:ROOT:/Test/RBMK/flux2.png
+isVisible:true
+text:(%{self.resource.fluxs})
+textPostFix: 慢中子通量
+displayType:infoOnly
+buildSpeed:0
+[action_tempdisp]
+iconImage:ROOT:/Test/RBMK/temp.png
+isVisible:true
+text:%{self.resource.temp}K
+textPostFix: 温度
+displayType:infoOnly
+buildSpeed:0
+[hiddenAction_fluxoutE]
+autoTrigger:if self.resource.fluxfc>50
+addResources:fluxfc=-20
+fireTurretXAtGround: n
+fireTurretXAtGround_withOffset:0,0
+fireTurretXAtGround_withProjectile:1
+
+[hiddenAction_ex]
+autoTriggerOnEvent:newMessage
+temporarilyAddTags:
+
+# from 0 to 3 : right,down,left,up
+[hiddenAction_sendSelf]
+buildSpeed:0s
+sendMessageTo:customTarget1
+sendMessageWithData:idtag = str(self.id)
+[hiddenAction_init]
+buildSpeed:0s
+autoTriggerOnEvent:created
+takeResources_excludeUnitsWithoutTags:RBMK
+takeResources_maxUnits:4
+takeResources:signal=-1
+takeResources_includeUnitsWithinRange:21
+takeResources_triggerActionForEach:initPeer,sendSelf
+[hiddenAction_initPeer]
+setUnitMemory:qu[memory.qu.length()]=thisActionTarget
+setCustomTarget1:thisActionTarget
+alsoTriggerAction:dir
+buildSpeed:0s
+[hiddenAction_dir]
+autoTrigger:if memory.qu.length() > 0
+alsoQueueAction:x0,x1,x2,x3,clear
+buildSpeed:0.1s
+[hiddenAction_x0]
+requireConditional:if directionBetween(self,memory.qu[memory.qu.length()])==0
+setUnitMemory:neb[0] = memory.qu[memory.qu.length()]
+buildSpeed:0.1s
+[hiddenAction_x1]
+requireConditional:if directionBetween(self,memory.qu[memory.qu.length()])==270
+setUnitMemory:neb[1] = memory.qu[memory.qu.length()]
+buildSpeed:0.1s
+[hiddenAction_x2]
+requireConditional:if directionBetween(self,memory.qu.[memory.qu.length()])==180
+setUnitMemory:neb[2] = memory.qu[memory.qu.length()]
+buildSpeed:0.1s
+[hiddenAction_x3]
+requireConditional:if directionBetween(self,memory.qu[memory.qu.length()])==90
+setUnitMemory:neb[3] = memory.qu[memory.qu.length()]
+buildSpeed:0.1s
+[hiddenAction_clear]
+buildSpeed:0.1s
+setUnitMemory:qu[memory.qu.length()]=null
+#setResourcesWithLogic:cache0 = sign(self.x-memory.qu[memory.qu.length()+1].x)
+#[hiddenAction_y0]
+#setResourcesWithLogic:cache1 = sign(self.y-memory.qu[memory.qu.length()+1].y)
+#autoTriggerOnEvent:
+#newMessage(withTag=fluxf)
+#addResourcesWithLogic:fluxf=(lastDamagedBy.resource.credits)
