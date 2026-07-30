@@ -1,6 +1,6 @@
 ﻿[mod]
-title:矢量深空-snapshotX2164[260720]
-title_en:<Vecosmos>-preAlpha2.1.5
+title:矢量深空-snapshotX2165[260720]
+title_en:<Vecosmos>-preAlpha2165
 description:更新见群\n-曾用名RUSTBLAST\n-by 鸽咕Edgedge
 thumbnail:icon.png
 minVersion:1.15p11
