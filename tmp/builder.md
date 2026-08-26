@@ -99,3 +99,12 @@ iconImage:ROOT:icon/elec.png
 @copyFromSection:action_tog1
 text:特殊
 iconImage:ROOT:icon/spec.png
+[action_clear]
+displayType:infoOnlyNoBox
+pos:-0.5
+description:单击收起所有
+text:收起
+buildSpeed:0s
+alwaysSinglePress:true
+iconImage:ROOT:icon/folder2.png
+setUnitMemory:show[0]=false,show[1]=false,show[2]=false,show[3]=false,show[4]=false,show[5]=false

@@ -1,6 +1,6 @@
 ﻿[mod]
-title:矢量深空-snapshotX2169[260809]
-title_en:<Vecosmos>-2169
+title:矢量深空-snapshotX21670b[260826]
+title_en:<Vecosmos>-2170b
 description:更新见群\n-曾用名RUSTBLAST\n-by 鸽咕Edgedge
 thumbnail:icon.png
 minVersion:1.15p11
