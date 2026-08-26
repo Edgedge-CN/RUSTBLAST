@@ -3,25 +3,53 @@ strictLevel:0
 allowCaptureWhenNeutralByAI:true
 #傻逼ai连占领都不会
 #fuck idiot AI that can't capture
+@global radResis = 0
 [global_resource_红宝石]
+#mean gem
 hidden:false
 iconImage:ROOT:/mine.png
 displayName:红色矿质
+#mean red mineral
 displayNameShort:矿
 displayColor: #ff0f5f
 priority:1
 displayRoundedDown:true
 displayWhenZero:false
-#This resource come from 'starblast.io'
-
+#This resource come from 'starblast.io' ,about was move to my another mod
+[global_resource_ee]
+hidden:true
+iconImage:ROOT:/electronBlock.png
+displayName:  稳定电子团
+displayTextPostfix:C
+displayNameShort:电素
+displayColor: #0099ff
+priority:1
+displayRoundedDown:false
+displayWhenZero:false
 [global_resource_电力]
-hidden:false
-displayName:电力
-iconImage:ROOT:/ele.png
+hidden:true
+displayName:/
+#iconImage:ROOT:/ele.png
 displayNameShort:电
 displayColor: #00ff6a
 priority:1
-displayTextPostfix:kW
+displayTextPostfix:kJ
+displayRoundedDown:false
+displayWhenZero:true
+appendResourceInHUD:ee
+[global_resource_cap]
+#capacity
+#这个mod是我从萌新时期开始做的 那时被奇怪的前辈带着用中文命名
+#后来开智改用英文了 但这个mod的史山已经相当庞大 改起来非常费劲 也包括上文的红宝石 真的不想要这个b名字啊啊啊
+#因此有中英混用的奇怪命名方式
+#于x2169重写电力系统                                          等我有钱买token一点要把这群b名字改掉
+#I made this mod since I was a greenhand (I use mother tongue in almost name)
+#When I realized English is more convenient,the number of old name I used was enormous
+appendResourceInHUD:电力
+iconImage:ROOT:/ele2.png
+hidden:false
+displayColor: #00fffb
+displayName:电力
 displayRoundedDown:false
 displayWhenZero:true
 [global_resource_data]
@@ -52,6 +80,7 @@ displayName:几何元素
 #iconImage:ROOT:/ele.png
 #arras yeah :P
 #also try https://www.arras.io
+#这里只是兼容我的另外一个mod   此模组流程中不会用到
 displayNameShort:几何
 displayColor: #90d822
 priority:1
@@ -109,11 +138,16 @@ displayRoundedDown:false
 displayWhenZero:false
 displayTextPostfix:mol
 
-[global_resource_poly]
-displayName:几何元素
-displayNameShort:几何
-displayColor: #90d822
-priority:1
-displayRoundedDown:true
-displayWhenZero:false
-displayTextPostfix:poly
+[resource_radTaken]
+displayName:射线吸收剂量
+displayTextPostfix:mSv
+[resource_radResis]
+displayName:射线抗性
+#可变的抗性 用于力场 镀层等 目前未启用
+displayTextPostfix:mSv
+
+[hiddenAction_radDamage]
+autoTrigger:true
+requireConditional:if self.resource.radTaken> (${core.maxHp}*0.3/${radResis+1})
+addResourcesWithLogic:hp=-0.5*self.resource.radTaken,radTaken=-0.12*self.resource.radTaken
+#[action_radCounter]
